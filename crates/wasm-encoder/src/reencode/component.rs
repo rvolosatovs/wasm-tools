@@ -1021,6 +1021,9 @@ pub mod component_utils {
                     .collect::<Result<Vec<_>, _>>()?;
                 section.stream_write(reencoder.component_type_index(ty), options);
             }
+            wasmparser::CanonicalFunction::StreamForward { ty } => {
+                section.stream_forward(reencoder.component_type_index(ty));
+            }
             wasmparser::CanonicalFunction::StreamCancelRead { ty, async_ } => {
                 section.stream_cancel_read(ty, async_);
             }
