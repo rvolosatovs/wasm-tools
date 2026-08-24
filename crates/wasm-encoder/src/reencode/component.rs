@@ -1053,6 +1053,9 @@ pub mod component_utils {
                     .collect::<Result<Vec<_>, _>>()?;
                 section.future_write(reencoder.component_type_index(ty), options);
             }
+            wasmparser::CanonicalFunction::FutureForward { ty } => {
+                section.future_forward(reencoder.component_type_index(ty));
+            }
             wasmparser::CanonicalFunction::FutureCancelRead { ty, async_ } => {
                 section.future_cancel_read(ty, async_);
             }
